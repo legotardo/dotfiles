@@ -9,6 +9,6 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 autoload -U add-zsh-hook
 
-export PATH=/home/doginuwu/.local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

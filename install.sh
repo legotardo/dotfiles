@@ -46,14 +46,17 @@ for app in "${APPS[@]}"; do
 done
 
 if ! command -v lazygit &> /dev/null; then
-  echo "Instalando lazygit (binário)..."
+    echo "Instalando lazygit (binário)..."
 
-  LAZYGIT_VERSION="0.61.1"
+    LAZYGIT_VERSION="0.61.1"
 
-  curl -Lo lazygit.tar.gz \
-    https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_linux_x86_64.tar.gz 
+    curl -Lo lazygit.tar.gz \
+        https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_linux_x86_64.tar.gz 
 
-  tar xf lazygit.tar.gz lazygit
-  mv lazygit ~/.local/bin/
-  chmod +x ~/.local/bin/lazygit
+    tar xf lazygit.tar.gz lazygit
+
+    mkdir -p ~/.local/bin
+
+    mv lazygit ~/.local/bin/
+    chmod +x ~/.local/bin/lazygit
 fi
