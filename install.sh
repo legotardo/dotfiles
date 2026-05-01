@@ -4,7 +4,6 @@ DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 echo "Dotfiles directory: $DOTFILES_DIR"
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "📦 Instalando Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
@@ -25,7 +24,10 @@ link_file() {
     local dest=$2
 
     mkdir -p "$(dirname "$dest")"
-    rm -rf "$dest"
+
+    if [ -f "$dest" ] || [ -L "$dest" ]; then
+        rm "$dest"
+    fi
 
     ln -s "$src" "$dest"
 }
@@ -42,3 +44,16 @@ for app in "${APPS[@]}"; do
         link_file "$src" "$dest"
     done
 done
+
+if ! command -v lazygit &> /dev/null; then
+  echo "Instalando lazygit (binário)..."
+
+  LAZYGIT_VERSION="0.61.1"
+
+  curl -Lo lazygit.tar.gz \
+    https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_linux_x86_64.tar.gz 
+
+  tar xf lazygit.tar.gz lazygit
+  mv lazygit ~/.local/bin/
+  chmod +x ~/.local/bin/lazygit
+fi
