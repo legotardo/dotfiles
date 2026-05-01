@@ -60,3 +60,7 @@ if ! command -v lazygit &> /dev/null; then
     mv lazygit ~/.local/bin/
     chmod +x ~/.local/bin/lazygit
 fi
+
+if command -v zsh &> /dev/null; then
+  chsh -s $(which zsh)
+fi
