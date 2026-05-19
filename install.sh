@@ -60,3 +60,5 @@ if ! command -v lazygit &> /dev/null; then
     mv lazygit ~/.local/bin/
     chmod +x ~/.local/bin/lazygit
 fi
+
+curl -fsSL https://opencode.ai/install | bash
